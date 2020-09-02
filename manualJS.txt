@@ -1,0 +1,50 @@
+Variáveis:
+	blockStatus[V][H]	//Posições de Status do Tabuleiro sendo V = Posição Vertical e H = Posição Horizontal
+	blockStatus[][] = 0	//Quadrado Espaço em Branco
+	blockStatus[][] = 1	//Quadrado Vermelho da Line
+	blockStatus[][] = 2	//Quadrado Amarelo do Square
+	blockStatus[][] = 3	//Quadrado Azul do L
+	blockStatus[][] = 4	//Quadrado Ciano do LInverted
+	blockStatus[][] = 5	//Quadrado Laranja do U
+	blockStatus[][] = 6	//Quadrado Limão do T
+	blockStatus[][] = 7	//Quadrado Cinza do Z
+	blockStatus[][] = 8	//Quadrado Azul Escuro do ZInverted
+	hBlock = 0		//Posição do Verificador de Bloco em branco Horizontal
+	vBlock = 0		//Posição do verificador de Bloco em branco Vertical
+	pieceType = 0		//Line
+	pieceType = 1		//Square
+	pieceType = 2		//L
+	pieceType = 3		//LInverted
+	pieceType = 4		//U
+	pieceType = 5		//T
+	pieceType = 6		//Z
+	pieceType = 7		//ZInverted
+	pieceRotation = 0	//Posição Original da Peça
+	pieceRotation = 1	//Posição 90º da Peça
+	pieceRotation = 2	//Posição 180º da Peça
+	pieceRotation = 3	//Posição 360º da Peça
+	gameMode = 0		//Arcade
+	gameMode = 1		//Inverted Gravity
+	gameMode = 2		//Trap Mode
+	xSize = 10		//Tamanho Horizontal do Tabuleiro
+	ySize = 20		//Tamanho Vertical do Tabuleiro
+
+Ordem das Funções no .js:
+/*	VARIÁVEIS	*/
+/*	FUNÇÕES COM A TABELA			*/
+/*	OPÇÕES DE JOGO				*/
+/*	MODOS DE JOGO				*/
+/*	INICIALIZAÇÃO DO TRAP MODE		*/
+/*	TEMPORIZADOOR DO JOGO			*/
+/*	INICIALIZAÇÃO DO JOGO			*/
+/*	FINAL DE JOGO				*/
+/*	CONTROLE DOS BOTÕES			*/
+/*	SISTEMA DE PONTOS			*/
+/*	SISTEMA DE RANKING			*/
+/*	CONTROLE DAS PEÇAS			*/
+/*	GRAVIDADE				*/
+/*	CRIAÇÃO					*/
+/*	ROTAÇÃO					*/
+/*	CONTROLE POR ARROW KEYS			*/
+/*	ATUALIZAR STYLE DO BLOCKSTATUS		*/
+/*	DESABILITAR PADRÃO PARA AS ARROW KEYS	*/

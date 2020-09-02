@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+	<title>Tetris</title>
+	<meta charset="UTF-8"/>
+	<meta name="author" content="Rafael Mazzoli Camargo">
+	<meta name="description" content="Jogo Tetris">
+	<meta name="keywords" content="Tetris, Arcade, Mazzoli">
+	<link rel="shortcut icon" type="image/x-icon" href="_images/tetris.ico"/>
+	<link id="style" rel="stylesheet" type="text/css" href="_css/style-default.css"/>
+	<script src="_js/function.js"></script>
+</head>
+<body onload="generateTable(10, 20);">
+<div id="navbar">
+		<h1 class="title-principal">Tetris</h1>
+		<hr class="width60"/>
+		<span id="title3"></span>
+		<button id="newGame" onclick= "startGameVariables();">Iniciar Partida</button>
+		<br/>
+		<button id="developerMode" onclick= "developerMode();">Modo Desenvolvedor</button>
+		<br/>
+		<h1 id="title1"> Modos de Jogo </h1>
+		<button id="classicMode" onclick= "classicMode();">Arcade Mode</button>
+		<br/>
+		<button id="trapMode" onclick= "trapMode();">Trap Mode</button>
+		<br/>
+		<button id="invertedGravity" onclick= "invertedGravity();">Inverted gravity</button>
+		<br/><br/>
+		<h1 id="title2">Selecionar <wbr/>Tamanho do Jogo</h1>
+		<button onclick="generateTable(10, 20);">10x20</button>
+		<button onclick="generateTable(22, 44);">22x44</button>
+</div>
+<div id="menu">
+	<h1>Tempo de Jogo:</h1>
+	<h2 id="Time">0m 0s</h2>
+	<hr class="width80">
+	<h1>Pontos:</h1>
+	<h4 id="bonus">+ Bonus</h4>
+	<h2 id="Points">0</h2>
+	<hr class="width80">
+	<h1>Level:</h1>
+	<h2 id="Levels">1</h2>
+	<hr class="width80">
+	<h1>Linhas Eliminadas:</h1>
+	<h2 id="Lines">0</h2>
+</div> 
+<div id="game-area">
+</div>
+<div id="ranking">
+	<span class="dir">Ranking:</span><br/><br/>
+	<span class="dir" id="nick0"></span><span class="cen" id="rank0"></span><br/>
+	<span class="dir" id="nick1"></span><span class="cen" id="rank1"></span><br/>
+	<span class="dir" id="nick2"></span><span class="cen" id="rank2"></span><br/>
+	<span class="dir" id="nick3"></span><span class="cen" id="rank3"></span><br/>
+	<span class="dir" id="nick4"></span><span class="cen" id="rank4"></span>
+	<span id="footer">Tetris - Unicamp [FT]</span>
+	<img id="animal-gif" alt="pixel-animal" src="_images/pixel-rabbit.gif"/>
+</div>
+</body>
+</html>

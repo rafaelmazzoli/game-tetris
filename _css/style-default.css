@@ -1,0 +1,203 @@
+@charset "UTF-8";
+@font-face
+{
+	font-family: 'Minecraftia';
+	src: url("../_fonts/Minecraftia-Regular.ttf");
+}
+@font-face
+{
+	font-family: 'Tetris';
+	src: url("../_fonts/Tetris.ttf");
+}
+@font-face
+{
+	font-family: 'Titillium';
+	src: url("../_fonts/Titillium-Regular.otf");
+}
+@keyframes bonus
+{
+	0% 
+	{
+		opacity: 0;
+		margin-top: auto;
+	}
+	33%
+	{
+		opacity: 0.3;
+		margin-top: -0.5em;
+	}
+	66%
+	{
+		opacity: 0.6;
+		margin-top: -1em;
+	}
+	100% 
+	{
+		opacity: 1;
+		margin-top: -1.5em;
+	}
+}
+
+/* BASE */
+
+html
+{
+	height: 100%;
+	width: 100%;
+	margin: 0;
+}
+
+body
+{
+	height: 100%;
+	width: 100%;
+	margin: 0;
+	position: initial;
+	text-align: center;
+	font-family: Minecraftia;
+	background: url("../_images/pixel-wallpaper.jpg") center top no-repeat;
+	background-size: auto 200%;
+	background-color: #7bd434;
+}
+
+div#navbar
+{
+	height: 90%;
+	width: 30%;
+	float: left;
+	text-align: center;
+}
+
+div#game-area
+{
+	position: relative;
+	width: 40%;
+	margin-left: auto;
+	margin-right: auto;
+	height: 100%;
+	padding-top: 3%;
+}
+
+div#menu
+{
+	padding-top: 5%;
+	height: 90%;
+	width: 30%;
+	position: initial;
+	float: right;
+}
+
+div#ranking
+{
+	padding-top: 15%;
+	height: 70%;
+	color: black;
+}
+
+/* GLOBALS */
+
+.width80
+{
+	width: 40%;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 2em;
+}
+
+.width60
+{
+	width: 60%;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: -3em;
+}
+
+.dir
+{
+	float: left;
+	margin-left: 5em;
+	text-align: left;
+	color: black;
+}
+
+.cen
+{
+	display:table;
+	margin-left: 30em;
+	color: black;
+}
+
+span#footer
+{
+	transform: rotate(-20deg);
+	float: right;
+	margin-right: 3em;
+	margin-top: 8em;
+	margin-bottom: 2em;
+}
+
+h1,h2,h4
+{
+	font-size: 1em;
+	color: white;
+}
+
+button#developerMode
+{
+	opacity: 0;
+}
+
+button
+{
+	font-family: Titillium;
+	background-color: white;
+    color: black;
+    border: 2px solid white;
+}
+
+button:hover
+{
+	background: none;
+    color: white;
+}
+
+img#animal-gif
+{
+	height: 3em;
+	width: 4em;
+	margin-top: 3em;
+	margin-right: 10em;
+	float: right;
+	box-shadow: 0em 0.6em 0.6em -0.5em #01ab26;
+}
+
+.title-principal
+{
+	font-size: 4em;
+	font-family: tetris;
+}
+
+h4#bonus
+{
+	display: block;
+	position: absolute;
+	z-index: 999;
+	opacity: 0;
+}
+
+/* TABLE */
+
+table
+{
+	margin: auto;
+	height: 90%;
+	width: 60%;
+	border-spacing: 0em;
+	border-radius: 0.3em;
+}
+
+td
+{
+	border: 0.1em solid rgba(0,0,0,0.1);
+	border-radius: 0.3em;
+}
