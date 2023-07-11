@@ -52,7 +52,7 @@ var	hBlock = 0;
 var	vBlock = 0;
 var pieceType = 0;
 var pieceRotation = 0;
-var velocity = 1000;
+var velocity = 800;
 var clickOnce = 0;
 var atLeastOnce = 0;
 var placarPoints = 0;
@@ -75,6 +75,9 @@ var trapMin = 0;
 var trapMax = 4;
 var trapCurrent = 0;
 var bonusOnce = 0;
+var UPieceEnabled = false;
+var bonusTime;
+
 var rankingList = [	playerRank = {nickName: "Rengar Recalls U",pointsObtained: 500,levelObtained: 2,timePlayed: "10m 0s",gameType: "Arcade", sizeGame: "10x20"},
 					playerRank = {nickName: "Gigant0ssaur0",pointsObtained: 300,levelObtained: 1,timePlayed: "7m 30s",gameType: "Arcade", sizeGame: "10x20"}, 
 					playerRank = {nickName: "Sor Dollynho",pointsObtained: 200,levelObtained: 1,timePlayed: "5m 00s",gameType: "Arcade", sizeGame: "10x20"}, 
@@ -168,19 +171,29 @@ function developerMode()
 	{
 		if(pausedGame == 0)
 		{
-			document.getElementsByTagName("button")[1].setAttribute("style","background: none; opacity: 1; color: white;");
+			document.getElementById("developerMode").setAttribute("style","background: none; opacity: 1; color: white;");
 			clearInterval(runningGame);
 			clearInterval(gameTimer);
 			pausedGame = 1;
 		}
 		else
 		{
-			document.getElementsByTagName("button")[1].setAttribute("style","background: white; opacity: 1; color: black;");
+			document.getElementById("developerMode").setAttribute("style","background: white; opacity: 1; color: black;");
 			gameTimer = setInterval(timeGame, 1000);
 			runningGame = setInterval(dropPiece, velocity);
 			pausedGame = 0;
 		}
 	}
+};
+
+function enableUPiece()
+{
+	UPieceEnabled = !UPieceEnabled;
+
+	if(UPieceEnabled)
+		document.getElementById("enableUPiece").setAttribute("style","background: none; opacity: 1; color: white;");
+	else
+		document.getElementById("enableUPiece").setAttribute("style","background: white; opacity: 1; color: black;");
 };
 
 /*	MODOS DE JOGO	*/
@@ -324,24 +337,24 @@ function startGameVariables()
 		startTrapMode();
 		if (xSize == 22 && ySize == 44)
 		{
-			trapTime = setInterval(startTrapMode, 120000);
-			trapMin = 1;
-			trapMax = 6;
+			trapTime = setInterval(startTrapMode, 60000);
+			trapMin = 6;
+			trapMax = 12;
 		}
 		else
 		{
-			trapTime = setInterval(startTrapMode, 60000);
-			trapMin = 1;
+			trapTime = setInterval(startTrapMode, 30000);
+			trapMin = 2;
 			trapMax = 4;
 		}
 	}
 	if (xSize == 22 && ySize == 44)
 	{
-		velocity = 775;
+		velocity = 600;
 	}
 	else
 	{
-		velocity = 1000;
+		velocity = 800;
 	}
 	gameGo = 0;
 	levelGame = 1;
@@ -376,6 +389,7 @@ function endGame()
 	}
 	gameGo = 1;
 	playingGame = 0;
+	linesDones = 0;
 	zerarTabela();
 	clearInterval(gameTimer);
 	addToRank();
@@ -385,11 +399,12 @@ function endGame()
 /*	CONTROLE DOS BOTÕES	*/
 function buttonControl(X, Y)
 {
-	for(var x = 0; x < 7; x++)
+	for(var x = 0; x < document.getElementsByTagName("button").length; x++)
 	{
 		document.getElementsByTagName("button")[x].setAttribute("style","opacity: "+X+";");
 	}
-	document.getElementsByTagName("button")[1].setAttribute("style","opacity: "+Y+";");
+	document.getElementById("developerMode").setAttribute("style","opacity: "+Y+";");
+	document.getElementById("enableUPiece").setAttribute("style","opacity: "+Y+";");
 	if(playingGame == 0)
 	{
 		document.getElementById("title2").innerHTML="Selecionar Tamanho do Jogo";
@@ -415,8 +430,8 @@ function doPoints(lineY)
 		atLeastOnce++;
 		if(atLeastOnce == 2)
 		{
-			document.getElementById("bonus").style.animation = "bonus 3s 1";
-			bonusTime = setInterval(bonusTimer, 1000);
+			document.getElementById("bonus").style.animation = "bonus 4s 1";
+			bonusTime = setInterval(bonusTimerReset, 4000);
 		}
 	}
 	for(var x = 0; x < xSize; x++)
@@ -432,15 +447,10 @@ function doPoints(lineY)
 	}
 };
 
-function bonusTimer()
+function bonusTimerReset()
 {
-	bonusOnce++;
-	if(bonusOnce == 4)
-	{
-		document.getElementById("bonus").style.animation = "";
-		bonusOnce = 0;
-		clearInterval(bonusTime);
-	}
+	document.getElementById("bonus").style.animation = "";
+	clearInterval(bonusTime);
 };
 
 function makePoints()
@@ -470,7 +480,7 @@ function goToPoints()
 	{
 		makePoints();
 	}
-	placarPoints =  placarPoints + (atLeastOnce * atLeastOnce * 10);
+	placarPoints =  placarPoints + (atLeastOnce * atLeastOnce * 20);
 	levelGame = 1;
 	if(placarPoints >= 500)
 	{
@@ -494,9 +504,9 @@ function goToPoints()
 		}
 		if(levelGame > tryNumber)
 		{
-			if(velocity > 100)
+			if(velocity > 200)
 			{
-				velocity -= 225;
+				velocity -= 100;
 				document.getElementById("Levels").innerHTML = levelGame;
 			}
 			tryNumber++;
@@ -900,7 +910,10 @@ function generatePiece()
 			LInvertedPiece();
 			break;
 		case 4:
-			UPiece();
+			if(UPieceEnabled)
+				UPiece();
+			else
+				generatePiece();
 			break;
 		case 5:
 			TPiece();
@@ -926,11 +939,6 @@ function LinePiece()
 		hBlock = xSize/2-1;
 		vBlock = 4;
 	}
-	else
-	{
-		clearInterval(runningGame);
-		endGame();
-	}
 };
 
 function SquarePiece()
@@ -943,11 +951,6 @@ function SquarePiece()
 		blockStatus[1][xSize/2] = 2;
 		hBlock = xSize/2-1;
 		vBlock = 2;
-	}
-	else
-	{
-		clearInterval(runningGame);
-		endGame();
 	}
 };
 
@@ -962,11 +965,6 @@ function LPiece()
 		hBlock = xSize/2-1;
 		vBlock = 3;
 	}
-	else
-	{
-		clearInterval(runningGame);
-		endGame();
-	}
 };
 
 function LInvertedPiece()
@@ -979,11 +977,6 @@ function LInvertedPiece()
 	blockStatus[2][xSize/2-1] = 4;
 	hBlock = xSize/2-1;
 	vBlock = 3;
-	}
-	else
-	{
-		clearInterval(runningGame);
-		endGame();
 	}
 };
 
@@ -1014,11 +1007,6 @@ function TPiece()
 		hBlock = xSize/2-1;
 		vBlock = 2;
 	}
-	else
-	{
-		clearInterval(runningGame);
-		endGame();
-	}
 };
 
 function UPiece()
@@ -1032,11 +1020,6 @@ function UPiece()
 		blockStatus[0][xSize/2]=5;
 		vBlock=2;
 		hBlock=xSize/2-2;
-	}
-	else
-	{
-		clearInterval(runningGame);
-		endGame();
 	}
 };
 
